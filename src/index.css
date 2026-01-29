@@ -1,0 +1,149 @@
+:root {
+  /* Dynamic HSL Palette */
+  --hue-primary: 250; /* Deep Indigo/Purple */
+  --hue-secondary: 320; /* Vibrant Pink/Magenta */
+  --hue-success: 150;
+  --hue-error: 340;
+  --hue-bg: 240;
+
+  /* Light Theme Colors */
+  --bg-app: hsl(var(--hue-bg), 20%, 97%);
+  --bg-panel: hsla(0, 0%, 100%, 0.7);
+  --text-main: hsl(var(--hue-bg), 40%, 15%);
+  --text-muted: hsl(var(--hue-bg), 20%, 50%);
+  --primary: hsl(var(--hue-primary), 80%, 60%);
+  --secondary: hsl(var(--hue-secondary), 80%, 60%);
+  --accent: hsl(var(--hue-primary), 90%, 65%);
+  
+  --cell-bg: hsla(0, 0%, 100%, 0.8);
+  --cell-bg-selected: hsla(var(--hue-primary), 80%, 90%, 0.8);
+  --cell-bg-highlight: hsla(var(--hue-primary), 80%, 95%, 0.8);
+  --cell-text: var(--text-main);
+  --cell-text-given: var(--text-main);
+  --cell-text-user: hsl(var(--hue-primary), 70%, 40%);
+  --cell-text-error: hsl(var(--hue-error), 70%, 50%);
+  
+  --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --glass-border: 1px solid hsla(0, 0%, 100%, 0.5);
+
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+[data-theme='dark'] {
+  --bg-app: hsl(var(--hue-bg), 30%, 10%);
+  --bg-panel: hsla(var(--hue-bg), 30%, 15%, 0.7);
+  --text-main: hsl(var(--hue-bg), 10%, 90%);
+  --text-muted: hsl(var(--hue-bg), 10%, 60%);
+  --primary: hsl(var(--hue-primary), 70%, 65%);
+  
+  --cell-bg: hsla(var(--hue-bg), 30%, 20%, 0.8);
+  --cell-bg-selected: hsla(var(--hue-primary), 60%, 30%, 0.8);
+  --cell-bg-highlight: hsla(var(--hue-primary), 60%, 20%, 0.8);
+  --cell-text: var(--text-main);
+  --cell-text-given: var(--text-main);
+  --cell-text-user: hsl(var(--hue-primary), 80%, 75%);
+  --cell-text-error: hsl(var(--hue-error), 70%, 60%);
+
+  --glass-border: 1px solid hsla(var(--hue-bg), 20%, 30%, 0.5);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--bg-app);
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(var(--hue-primary), 70%, 70%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(var(--hue-secondary), 70%, 70%, 0.2) 0px, transparent 50%);
+  color: var(--text-main);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: var(--glass-border);
+  box-shadow: var(--shadow-lg);
+  border-radius: 1.5rem;
+}
+
+.btn {
+  background: var(--bg-panel);
+  border: var(--glass-border);
+  color: var(--text-main);
+  padding: 0.6em 1.2em;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  background: hsla(var(--hue-primary), 80%, 60%, 0.1);
+  border-color: var(--primary);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn.primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  box-shadow: 0 4px 10px hsla(var(--hue-primary), 70%, 50%, 0.4);
+}
+
+.btn.primary:hover {
+  background: hsl(var(--hue-primary), 70%, 55%);
+}
+
+.icon-btn {
+  padding: 0.5rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.fade-in {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.pop {
+  animation: pop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
