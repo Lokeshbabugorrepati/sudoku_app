@@ -16,13 +16,16 @@ const Board: React.FC<BoardProps> = ({ board, initialBoard, selectedCell, onCell
             style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(9, 1fr)',
-                gap: '2px', // gap between cells
-                padding: '10px',
-                maxWidth: '500px',
+                padding: '2px', // Slight padding for outer border
+                background: 'var(--grid-border)',
+                gap: '1px',
                 width: '100%',
+                maxWidth: '500px',
                 aspectRatio: '1',
-                margin: '20px auto',
+                margin: '0 auto',
                 userSelect: 'none',
+                overflow: 'hidden',
+                border: '2px solid var(--grid-border-thick)', // Outer thick border
             }}
         >
             {board.map((row, rIndex) =>
@@ -41,33 +44,34 @@ const Board: React.FC<BoardProps> = ({ board, initialBoard, selectedCell, onCell
                     const isSameNumber = selectedCell && board[selectedCell[0]][selectedCell[1]] !== 0 && board[selectedCell[0]][selectedCell[1]] === cell;
                     const isError = errorCells[rIndex][cIndex];
 
+                    // Border logic for 3x3 grids (thick borders)
+                    const borderRight = (cIndex + 1) % 3 === 0 && cIndex !== 8 ? '2px solid var(--grid-border-thick)' : undefined;
+                    const borderBottom = (rIndex + 1) % 3 === 0 && rIndex !== 8 ? '2px solid var(--grid-border-thick)' : undefined;
+
                     let bg = 'var(--cell-bg)';
-                    if (isSelected) bg = 'var(--cell-bg-selected)';
-                    else if (isError) bg = 'rgba(255, 0, 0, 0.2)'; // Fallback error
+                    if (isError) bg = 'hsla(var(--hue-error), 90%, 90%, 0.5)';
+                    else if (isSelected) bg = 'var(--cell-bg-selected)';
                     else if (isSameNumber) bg = 'var(--cell-bg-highlight)';
-                    else if (isRelated) bg = 'rgba(255, 255, 255, 0.4)'; // Subtle highlight for related
-
-                    // Thicker borders for 3x3 boxes
-
+                    else if (isRelated) bg = 'hsla(var(--hue-primary), 50%, 90%, 0.15)'; // Very subtle related highlight
 
                     return (
                         <div
                             key={`${rIndex}-${cIndex}`}
                             onClick={() => onCellClick(rIndex, cIndex)}
+                            className={cell !== 0 ? 'pop' : ''} // Animation on value change/render
                             style={{
                                 background: bg,
                                 display: 'flex',
                                 alignItems: 'center',
                                 justifyContent: 'center',
-                                fontSize: 'clamp(1.2rem, 4vw, 1.8rem)',
+                                fontSize: 'clamp(1.2rem, 3.5vw, 1.8rem)',
                                 fontWeight: isInitial ? 700 : 500,
                                 color: isError ? 'var(--cell-text-error)' : (isInitial ? 'var(--cell-text-given)' : 'var(--cell-text-user)'),
-                                borderRadius: '6px',
                                 cursor: 'pointer',
-                                transition: 'all 0.1s ease',
-                                marginRight: (cIndex + 1) % 3 === 0 && cIndex !== 8 ? '4px' : '0',
-                                marginBottom: (rIndex + 1) % 3 === 0 && rIndex !== 8 ? '4px' : '0',
-                                boxShadow: isSelected ? 'inset 0 0 0 2px var(--primary)' : 'none',
+                                transition: 'background-color 0.15s ease, color 0.15s ease',
+                                borderRight: borderRight,
+                                borderBottom: borderBottom,
+                                position: 'relative', // For potential future overlays
                             }}
                         >
                             {cell !== 0 ? cell : ''}

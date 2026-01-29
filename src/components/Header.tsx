@@ -19,36 +19,44 @@ const Header: React.FC<HeaderProps> = ({ difficulty, onDifficultyChange, timer, 
     return (
         <header style={{
             width: '100%',
-            maxWidth: '600px',
-            marginBottom: '20px',
             display: 'flex',
             flexDirection: 'column',
-            gap: '15px'
+            gap: '12px'
         }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <h1 style={{ margin: 0, fontSize: '2.5rem', fontWeight: 800, letterSpacing: '-1px', background: 'linear-gradient(45deg, var(--primary), var(--secondary))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                <h1 style={{
+                    margin: 0,
+                    fontSize: '2.5rem',
+                    fontWeight: 800,
+                    letterSpacing: '-1.5px',
+                    background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+                    WebkitBackgroundClip: 'text',
+                    WebkitTextFillColor: 'transparent',
+                    filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+                }}>
                     Sudoku
                 </h1>
-                <button
-                    className="icon-btn glass-panel"
-                    onClick={toggleTheme}
-                    title="Toggle Theme"
-                    style={{ width: '40px', height: '40px' }}
-                >
-                    {theme === 'light' ? '🌙' : '☀️'}
-                </button>
+                <div style={{ display: 'flex', gap: '10px' }}>
+                    <button
+                        className="icon-btn"
+                        onClick={toggleTheme}
+                        title={theme === 'light' ? 'Switch to Dark Mode' : 'Switch to Light Mode'}
+                        style={{ width: '42px', height: '42px', fontSize: '1.2rem' }}
+                    >
+                        {theme === 'light' ? '🌙' : '☀️'}
+                    </button>
+                </div>
             </div>
 
             <div className="glass-panel" style={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                padding: '10px 20px',
+                padding: '12px 20px',
                 alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '10px'
+                gap: '15px',
+                borderRadius: '1rem'
             }}>
-                <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
-                    <span style={{ fontWeight: 600, color: 'var(--text-muted)' }}>Difficulty:</span>
+                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                     <select
                         value={difficulty}
                         onChange={(e) => onDifficultyChange(e.target.value as any)}
@@ -56,9 +64,13 @@ const Header: React.FC<HeaderProps> = ({ difficulty, onDifficultyChange, timer, 
                             background: 'transparent',
                             border: 'none',
                             color: 'var(--primary)',
-                            fontWeight: 'bold',
+                            fontWeight: '700',
                             cursor: 'pointer',
-                            fontSize: '1rem'
+                            fontSize: '1rem',
+                            padding: '4px 8px',
+                            borderRadius: '6px',
+                            outline: 'none',
+                            // Using a custom focus style if needed, but simple is better here
                         }}
                     >
                         <option value="Easy">Easy</option>
@@ -67,13 +79,20 @@ const Header: React.FC<HeaderProps> = ({ difficulty, onDifficultyChange, timer, 
                     </select>
                 </div>
 
-                <div style={{ display: 'flex', gap: '20px', fontWeight: 600 }}>
-                    <span style={{ color: mistakes >= 3 ? 'var(--cell-text-error)' : 'var(--text-main)' }}>
-                        Mistakes: {mistakes}/3
-                    </span>
-                    <span>
-                        ⏱️ {formatTime(timer)}
-                    </span>
+                <div style={{ display: 'flex', gap: '20px', fontWeight: 600, fontSize: '0.95rem' }}>
+                    <div style={{
+                        color: mistakes >= 3 ? 'var(--cell-text-error)' : 'var(--text-muted)',
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '6px'
+                    }}>
+                        <span>Mistakes:</span>
+                        <span style={{ color: mistakes >= 3 ? 'var(--cell-text-error)' : 'var(--text-main)' }}>{mistakes}/3</span>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-muted)' }}>
+                        <span>Time:</span>
+                        <span style={{ color: 'var(--text-main)', fontVariantNumeric: 'tabular-nums' }}>{formatTime(timer)}</span>
+                    </div>
                 </div>
             </div>
         </header>

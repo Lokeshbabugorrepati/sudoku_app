@@ -1,86 +1,115 @@
 :root {
-  /* Dynamic HSL Palette */
-  --hue-primary: 250; /* Deep Indigo/Purple */
-  --hue-secondary: 320; /* Vibrant Pink/Magenta */
-  --hue-success: 150;
-  --hue-error: 340;
+  /* Dynamic HSL Palette - Premium Feel */
+  --hue-primary: 260; /* Deep Royal Purple */
+  --hue-secondary: 330; /* Vivid Raspberry */
+  --hue-success: 160;
+  --hue-error: 350;
   --hue-bg: 240;
 
   /* Light Theme Colors */
-  --bg-app: hsl(var(--hue-bg), 20%, 97%);
-  --bg-panel: hsla(0, 0%, 100%, 0.7);
-  --text-main: hsl(var(--hue-bg), 40%, 15%);
-  --text-muted: hsl(var(--hue-bg), 20%, 50%);
-  --primary: hsl(var(--hue-primary), 80%, 60%);
-  --secondary: hsl(var(--hue-secondary), 80%, 60%);
-  --accent: hsl(var(--hue-primary), 90%, 65%);
+  --bg-app: hsl(var(--hue-bg), 30%, 96%); /* Slightly cooler white */
+  --bg-panel: hsla(0, 0%, 100%, 0.65);
+  --text-main: hsl(var(--hue-bg), 40%, 12%);
+  --text-muted: hsl(var(--hue-bg), 20%, 45%);
+  --primary: hsl(var(--hue-primary), 70%, 55%);
+  --primary-hover: hsl(var(--hue-primary), 70%, 45%);
+  --secondary: hsl(var(--hue-secondary), 80%, 55%);
   
-  --cell-bg: hsla(0, 0%, 100%, 0.8);
-  --cell-bg-selected: hsla(var(--hue-primary), 80%, 90%, 0.8);
-  --cell-bg-highlight: hsla(var(--hue-primary), 80%, 95%, 0.8);
+  --cell-bg: hsla(0, 0%, 100%, 0.9);
+  --cell-bg-selected: hsla(var(--hue-primary), 90%, 92%, 0.9);
+  --cell-bg-highlight: hsla(var(--hue-primary), 90%, 96%, 0.9);
   --cell-text: var(--text-main);
-  --cell-text-given: var(--text-main);
-  --cell-text-user: hsl(var(--hue-primary), 70%, 40%);
-  --cell-text-error: hsl(var(--hue-error), 70%, 50%);
+  --cell-text-given: hsl(var(--hue-bg), 40%, 10%); /* Very dark for contrast */
+  --cell-text-user: hsl(var(--hue-primary), 80%, 35%); /* Deep purple for user input */
+  --cell-text-error: hsl(var(--hue-error), 75%, 45%);
   
-  --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  --glass-border: 1px solid hsla(0, 0%, 100%, 0.5);
+  --grid-border: hsl(var(--hue-bg), 15%, 70%); /* Stronger border for light theme */
+  --grid-border-thick: hsl(var(--hue-bg), 30%, 40%); /* Much stronger thick border */
 
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --shadow-sm: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+  --shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  --glass-border: 1px solid hsla(0, 0%, 100%, 0.6);
+
+  font-family: 'Outfit', 'Inter', system-ui, sans-serif; /* Outfit is great for numbers */
   line-height: 1.5;
   font-weight: 400;
 }
 
 [data-theme='dark'] {
-  --bg-app: hsl(var(--hue-bg), 30%, 10%);
-  --bg-panel: hsla(var(--hue-bg), 30%, 15%, 0.7);
-  --text-main: hsl(var(--hue-bg), 10%, 90%);
-  --text-muted: hsl(var(--hue-bg), 10%, 60%);
-  --primary: hsl(var(--hue-primary), 70%, 65%);
+  --bg-app: hsl(var(--hue-bg), 25%, 8%);
+  --bg-panel: hsla(var(--hue-bg), 25%, 12%, 0.7);
+  --text-main: hsl(var(--hue-bg), 10%, 95%);
+  --text-muted: hsl(var(--hue-bg), 10%, 65%);
+  --primary: hsl(var(--hue-primary), 80%, 70%);
+  --primary-hover: hsl(var(--hue-primary), 80%, 60%);
   
-  --cell-bg: hsla(var(--hue-bg), 30%, 20%, 0.8);
-  --cell-bg-selected: hsla(var(--hue-primary), 60%, 30%, 0.8);
-  --cell-bg-highlight: hsla(var(--hue-primary), 60%, 20%, 0.8);
+  --cell-bg: hsla(var(--hue-bg), 25%, 16%, 0.85);
+  --cell-bg-selected: hsla(var(--hue-primary), 50%, 30%, 0.9);
+  --cell-bg-highlight: hsla(var(--hue-primary), 40%, 20%, 0.9);
   --cell-text: var(--text-main);
   --cell-text-given: var(--text-main);
-  --cell-text-user: hsl(var(--hue-primary), 80%, 75%);
-  --cell-text-error: hsl(var(--hue-error), 70%, 60%);
+  --cell-text-user: hsl(var(--hue-primary), 90%, 80%);
+  --cell-text-error: hsl(var(--hue-error), 90%, 70%);
 
-  --glass-border: 1px solid hsla(var(--hue-bg), 20%, 30%, 0.5);
+  --grid-border: hsla(var(--hue-bg), 10%, 40%, 0.5);
+  --grid-border-thick: hsl(var(--hue-bg), 10%, 60%);
+
+  --glass-border: 1px solid hsla(var(--hue-bg), 20%, 30%, 0.4);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   background-color: var(--bg-app);
   background-image: 
-    radial-gradient(at 0% 0%, hsla(var(--hue-primary), 70%, 70%, 0.2) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, hsla(var(--hue-secondary), 70%, 70%, 0.2) 0px, transparent 50%);
+    radial-gradient(circle at 10% 10%, hsla(var(--hue-primary), 70%, 60%, 0.15) 0px, transparent 40%),
+    radial-gradient(circle at 90% 90%, hsla(var(--hue-secondary), 70%, 60%, 0.15) 0px, transparent 40%);
   color: var(--text-main);
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 #root {
   width: 100%;
-  max-width: 1280px;
+  max-width: 100%; /* controlled by container */
+  margin: 0 auto;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Container for the game area */
+.app-container {
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 2rem;
+  flex: 1;
+}
+
+/* Desktop Logic: Side by Side if space allows */
+@media (min-width: 1024px) {
+  .app-container {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 4rem;
+    padding-top: 4rem;
+  }
 }
 
 /* Glassmorphism Utilities */
 .glass-panel {
   background: var(--bg-panel);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
   border: var(--glass-border);
   box-shadow: var(--shadow-lg);
   border-radius: 1.5rem;
@@ -90,60 +119,87 @@ body {
   background: var(--bg-panel);
   border: var(--glass-border);
   color: var(--text-main);
-  padding: 0.6em 1.2em;
-  border-radius: 0.75rem;
+  padding: 0.8em 1.2em; /* Larger touch target */
+  border-radius: 0.8rem;
   font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: all 0.2s;
-  backdrop-filter: blur(4px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(8px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .btn:hover {
   transform: translateY(-2px);
-  background: hsla(var(--hue-primary), 80%, 60%, 0.1);
+  background: hsla(var(--hue-primary), 60%, 50%, 0.1);
   border-color: var(--primary);
 }
 
 .btn:active {
-  transform: translateY(0);
+  transform: translateY(1px) scale(0.98);
 }
 
 .btn.primary {
   background: var(--primary);
   color: white;
-  border: none;
-  box-shadow: 0 4px 10px hsla(var(--hue-primary), 70%, 50%, 0.4);
+  border: 1px solid transparent;
+  box-shadow: 0 4px 12px hsla(var(--hue-primary), 70%, 50%, 0.4);
 }
 
 .btn.primary:hover {
-  background: hsl(var(--hue-primary), 70%, 55%);
+  background: var(--primary-hover);
+  box-shadow: 0 6px 16px hsla(var(--hue-primary), 70%, 50%, 0.5);
 }
 
 .icon-btn {
-  padding: 0.5rem;
+  padding: 0.6rem;
   border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   aspect-ratio: 1;
+  border: var(--glass-border);
+  background: var(--bg-panel);
+  cursor: pointer;
+  transition: all 0.2s;
+  color: var(--text-main);
+}
+
+.icon-btn:hover {
+  transform: rotate(15deg) scale(1.1);
+  background: hsla(var(--hue-primary), 60%, 50%, 0.1);
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .fade-in {
-  animation: fadeIn 0.4s ease-out forwards;
+  animation: fadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
-@keyframes pop {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+@keyframes pulse-soft {
+  0% { box-shadow: 0 0 0 0 hsla(var(--hue-primary), 70%, 60%, 0.4); }
+  70% { box-shadow: 0 0 0 10px transparent; }
+  100% { box-shadow: 0 0 0 0 transparent; }
 }
 
-.pop {
-  animation: pop 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+.pulse {
+  animation: pulse-soft 2s infinite;
 }
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+}
+

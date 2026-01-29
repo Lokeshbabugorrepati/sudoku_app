@@ -180,23 +180,25 @@ function App() {
   if (board.length === 0) return <div className="fade-in">Loading...</div>;
 
   return (
-    <div className="fade-in">
-      <Header
-        difficulty={difficulty}
-        onDifficultyChange={(d) => { setDifficulty(d); startNewGame(d); }}
-        timer={timer}
-        mistakes={mistakes}
-        theme={theme}
-        toggleTheme={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
-      />
+    <div className="app-container fade-in">
+      <div style={{ width: '100%', maxWidth: '600px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+        <Header
+          difficulty={difficulty}
+          onDifficultyChange={(d) => { setDifficulty(d); startNewGame(d); }}
+          timer={timer}
+          mistakes={mistakes}
+          theme={theme}
+          toggleTheme={() => setTheme(t => t === 'light' ? 'dark' : 'light')}
+        />
 
-      <Board
-        board={board}
-        initialBoard={initialBoard}
-        selectedCell={selectedCell}
-        onCellClick={handleCellClick}
-        errorCells={errorCells}
-      />
+        <Board
+          board={board}
+          initialBoard={initialBoard}
+          selectedCell={selectedCell}
+          onCellClick={handleCellClick}
+          errorCells={errorCells}
+        />
+      </div>
 
       <Controls
         onNumberClick={handleNumberInput}

@@ -9,37 +9,69 @@ interface ControlsProps {
 }
 
 const Controls: React.FC<ControlsProps> = ({ onNumberClick, onDelete, onUndo, onNewGame, onSolve }) => {
+    const numberPad = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
     return (
-        <div style={{ width: '100%', maxWidth: '500px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
-            {/* Number Pad */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(9, 1fr)', gap: '8px' }}>
-                {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+        <div style={{
+            width: '100%',
+            maxWidth: '500px',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '24px',
+            alignSelf: 'flex-start' /* Important for flex row alignment */
+        }}>
+            {/* Number Pad - Ergonomic Grid */}
+            <div className="glass-panel" style={{
+                padding: '15px',
+                display: 'grid',
+                gridTemplateColumns: 'repeat(5, 1fr)', // 5 cols: 1-5, 6-9+Del
+                gap: '8px',
+                borderRadius: '1.2rem'
+            }}>
+                {numberPad.map((num) => (
                     <button
                         key={num}
-                        className="btn glass-panel"
+                        className="btn"
                         onClick={() => onNumberClick(num)}
                         style={{
-                            fontSize: '1.5rem',
+                            fontSize: '1.4rem',
                             color: 'var(--primary)',
-                            padding: '0.5rem 0',
+                            padding: '0',
                             height: '50px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
-                            aspectRatio: '1/1' // While convenient, height is safer for varying widths
+                            background: 'rgba(255,255,255,0.4)',
+                            border: '1px solid rgba(255,255,255,0.2)',
+                            boxShadow: 'none'
                         }}
                     >
                         {num}
                     </button>
                 ))}
+                <button
+                    className="btn"
+                    onClick={onDelete}
+                    title="Erase"
+                    style={{
+                        fontSize: '1.4rem',
+                        color: 'var(--hue-error)',
+                        padding: '0',
+                        height: '50px',
+                        background: 'rgba(255,50,50,0.1)'
+                    }}
+                >
+                    ⌫
+                </button>
             </div>
 
-            {/* Action Buttons */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
-                <button className="btn" onClick={onUndo} title="Undo">↩️ Undo</button>
-                <button className="btn" onClick={onDelete} title="Erase">⌫ Erase</button>
-                <button className="btn" onClick={onSolve} title="Solve (Cheat)">💡 Solve</button>
-                <button className="btn primary" onClick={onNewGame}>New Game</button>
+            {/* Action Buttons Grouped */}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px' }}>
+                <div style={{ display: 'flex', gap: '8px' }}>
+                    <button className="btn" onClick={onUndo} title="Undo" style={{ flex: 1 }}>↩️ Undo</button>
+                    <button className="btn" onClick={onSolve} title="Solve" style={{ flex: 1 }}>💡 Solve</button>
+                </div>
+                <button className="btn primary" onClick={onNewGame} style={{ width: '100%' }}>New Game</button>
             </div>
         </div>
     );
